@@ -1,0 +1,604 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #c6d300; /* 亮黄绿色 */
+    --secondary-color: #2c3e50;
+    --accent-color: #c6d300;
+    --text-color: #222;
+    --background-color: #fff;
+}
+
+html, body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0 2.5vw; /* 左右留白 */
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+    width: 100%;
+}
+
+/* Header styles */
+.header {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    border-top: 5px solid var(--primary-color);
+    padding: 1rem 0 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-height: 80px;
+    margin-left: -2.5vw;
+    margin-right: -2.5vw;
+    width: 100vw;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin-bottom: 0rem;
+    color: var(--primary-color);
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav a:hover {
+    color: var(--primary-color);
+}
+
+.divider {
+    color: var(--primary-color);
+    font-size: 1.2em;
+    margin: 0 0.5em;
+    pointer-events: none;
+}
+
+/* Hero section */
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 2.2rem 0 2rem 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    margin-bottom: 1rem;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.building-selector {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0.5em 1em;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 1em;
+}
+
+.building-selector label {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1em;
+    min-width: 140px;
+    text-align: left;
+    display: inline-block;
+}
+
+.building-selector select {
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    padding: 0.2em 0.5em;
+    font-size: 1em;
+    color: var(--secondary-color);
+    background: #fff;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.building-selector select:focus {
+    border: 2px solid var(--primary-color);
+}
+
+/* Features section */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 0.5rem 0 0.5rem 0;
+    min-height: 180px;
+}
+
+.feature-cards-compare,
+.feature-cards-explorer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.feature-card {
+    background: white;
+    padding: 0.5rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    padding-top: 2.2rem; /* 统一卡片顶部内边距 */
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0.7rem;
+    left: 2rem;
+    width: calc(100% - 4rem);
+    color: #2c3e50;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 1rem;
+    margin-left: -2.5vw;
+    margin-right: -2.5vw;
+    width: 100vw;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .nav ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Retrofit-specific styles */
+.feature-card {
+    border: 2px solid var(--accent-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(241, 196, 15, 0.1));
+    pointer-events: none;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feature-card {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.org-display {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1em;
+    color: var(--secondary-color);
+    letter-spacing: 0.5px;
+    padding: 0.2em 0;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4rem;
+    margin-top: 0;
+    min-height: 140px;
+    height: 140px;
+    padding-left: 1rem;
+}
+
+.hero-text {
+    flex: 1 1 0;
+    text-align: center;
+    justify-content: center;
+}
+
+#building-image {
+    max-width: 310px;
+    height: auto;
+    border-radius: 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    display: block;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.hero-content.only-image {
+    justify-content: flex-end;
+}
+
+.hero-content.only-image #hero-text {
+    display: none;
+}
+
+.hero-content.only-image #building-image {
+    margin: 0 2rem 0 0;
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .hero-content {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        min-height: 120px;
+    }
+    #building-image {
+        margin: 1.5rem 0 0 0;
+        max-width: 100%;
+    }
+    .hero-text {
+        text-align: center;
+    }
+}
+
+.hero-info {
+    flex: 0 0 auto;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    left: -11.5rem;
+    margin-left: 0;
+    margin-top: -1.5rem;
+    width: auto;
+    color: rgba(255,255,255,0.7);
+}
+
+.hero-info table {
+    border-collapse: collapse;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    width: auto;
+}
+
+.hero-info td {
+    padding: 0.2em 0.4em 0.2em 0;
+}
+
+.hero-info .label {
+    font-weight: bold;
+    color: rgba(255,255,255,0.7);
+    min-width: 10px;
+    padding-right: 1em;
+}
+
+.hero-content.only-text {
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100%;
+    min-height: 140px;
+}
+
+.hero-text {
+    width: 100%;
+}
+
+.hero-content.only-text .hero-text {
+    margin-left: -4rem;
+}
+
+.hero-desc {
+    position: absolute;
+    left: 1.7rem;
+    top: calc(100% - 6rem);
+    margin-top: 1.2rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    max-width: 900px;
+    text-align: left;
+    line-height: 1.6;
+    z-index: 2;
+    display: none;
+}
+
+.features-toolbar {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    gap: 0.8rem;
+    font-size: 1rem;
+    padding-left: 0.5em;
+}
+
+.features-toolbar label {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1em;
+    min-width: 140px;
+    text-align: left;
+    display: inline-block;
+    margin-left: 1.5rem;
+}
+
+.features-toolbar select, .features-toolbar button {
+    font-size: 1rem;
+    padding: 0.2em 0.7em;
+    border-radius: 4px;
+    border: 1px solid var(--primary-color);
+    outline: none;
+}
+
+.features-toolbar button {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-left: 0.5rem;
+}
+
+.features-toolbar button:hover {
+    background: #b0be00;
+}
+
+/* Toggle styles */
+.toggle-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.2rem !important;
+}
+
+.toggle-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.toggle-item:hover {
+    background-color: rgba(198, 211, 0, 0.1);
+}
+
+.toggle-item input[type="checkbox"] {
+    margin-right: 0.8rem;
+    transform: scale(1.2);
+    accent-color: var(--primary-color);
+}
+
+.toggle-label {
+    font-size: 0.9rem;
+}
+
+/* Strategy data styles */
+.strategy-data {
+    margin-top: 0;
+}
+
+.strategy-data table {
+    margin-top: 0;
+    margin-left: 0.5rem;
+}
+
+.strategy-data td {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+.strategy-data .label {
+    font-weight: normal;
+    color: #2c3e50;
+    min-width: 180px;   /* 你可以调大这个值 */
+    text-align: right;
+    padding-right: 2.5rem; /* 可微调 */
+    left: 0;
+}
+
+.strategy-data .value {
+    text-align: left;
+    padding-left: 0.5rem;
+}
+
+.feature-card p {
+    margin-top: 0;
+}
+
+.toggle-container,
+.strategy-data,
+.feature-card > p {
+    margin-top: 0.8rem !important;
+}
+
+.feature-card > *:not(h3) {
+    margin-top: 0.8rem !important;
+}
+
+/* Ensure compare cards have the same layout as explore cards */
+.feature-cards-compare .toggle-container {
+    margin-top: 0.8rem !important;
+    gap: 1rem;
+}
+
+.feature-cards-compare .toggle-item {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature-cards-compare .toggle-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Make sure all toggle containers in compare mode have consistent spacing */
+#compare-toggle1 .toggle-container,
+#compare-toggle2 .toggle-container {
+    margin-top: 0.8rem !important;
+}
+
+.top5-charts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.chart-block {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+}
+
+.chart-title {
+    font-size: 0.85rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.top5-charts canvas {
+    width: 100% !important;
+    max-width: 180px;
+    height: 220px !important;
+    background: none;
+}
+
+.compare-charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.compare-chart-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+}
+
+.compare-charts-grid canvas {
+    width: 100% !important;
+    max-width: 135px;
+    height: 110px !important;
+    background: none;
+}
+
+.feature-card > .toggle-container:first-of-type {
+    margin-top: 0.8rem !important;
+}
+
+.feature-card > .toggle-container {
+    margin-top: 0.8rem !important;
+}
+
+/* Ensure compare cards have the same height and layout as explore cards */
+.feature-cards-compare .feature-card {
+    min-height: 280px;
+    justify-content: flex-start;
+    padding-top: 2.2rem;
+}
+
+.feature-cards-compare .feature-card .toggle-container {
+    margin-top: 0.8rem !important;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.feature-cards-compare .toggle-item {
+    padding: 0.6rem;
+    margin-bottom: 0.4rem;
+}
+
+/* Make compare chart titles smaller */
+.compare-chart-block .chart-title {
+    font-size: 0.65rem;
+    margin-bottom: 0.3rem;
+} 
