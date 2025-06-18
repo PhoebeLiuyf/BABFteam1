@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retrofit Interface Design</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>STEEP TOOL</h1>
+            <nav class="nav" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <span style="font-family: 'Arial', sans-serif; font-size: 1em; font-weight: bold; color: #2c3e50; letter-spacing: 0.5px;">Strategies for Thermal, Environmental, and Energy Planning</span>
+                <div class="org-display">Buro Happold<span class="divider">｜</span>UCL The Bartlett</div>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section class="hero">
+                <div class="building-selector">
+                    <label for="building-select">Select Building:</label>
+                    <select id="building-select">
+                        <option value="">-- Please select --</option>
+                        <option value="dr-williams-library">Dr Williams Library</option>
+                        <option value="student-center">Student Center</option>
+                        <option value="ioe">IOE</option>
+                    </select>
+                </div>
+                <div class="hero-content">
+                    <div class="hero-info" id="hero-info-left" style="display:none;">
+                        <table>
+                            <tr><td class="label">Site Name</td><td>Dr Williams's Library</td></tr>
+                            <tr><td class="label">Location</td><td>14 Gordon Sq, London WC1H 0AR</td></tr>
+                            <tr><td class="label">Function</td><td>Academic Archive &amp; Cultural Library</td></tr>
+                        </table>
+                    </div>
+                    <div class="hero-text" id="hero-text">
+                        <h2>Find the Best Retrofit Strategy</h2>
+                        <p>Select a building to explore retrofit options and strategies.</p>
+                    </div>
+                    <div class="hero-info" id="hero-info" style="display:none;">
+                        <table>
+                            <tr><td class="label">Retrofit Strategy</td><td>Passive Retrofit Strategies</td></tr>
+                            <tr><td class="label">Intended Start and CompletionDate</td><td>—</td></tr>
+                            <tr><td class="label">Source of Project Funding</td><td>—</td></tr>
+                        </table>
+                    </div>
+                    <img id="building-image" src="https://raw.githubusercontent.com/PhoebeLiuyf/BABF/main/library_picture.jpg" alt="Dr Williams Library" style="display:none;" />
+                </div>
+                <div class="hero-desc" id="hero-desc" style="display:none;">
+                    Dr Williams's Library is a Grade II listed heritage building located in central London. It serves as an important academic and cultural archive, with historical architectural features that must be preserved during any retrofit interventions.
+                </div>
+                <div id="building-info"></div>
+            </section>
+
+            <div class="features-toolbar">
+                <label for="retrofit-mode-select">Mode Selection:</label>
+                <select id="retrofit-mode-select">
+                    <option value="explorer">Retrofit Explorer</option>
+                    <option value="compare">Compare</option>
+                </select>
+                <button id="compare-run-btn" style="display: none;">Compare</button>
+            </div>
+
+            <section class="features">
+                <!-- Tool Explorer Mode Cards -->
+                <div class="feature-cards-explorer">
+                    <div class="feature-card">
+                        <h3>Select Retrofit Measures</h3>
+                        <div class="toggle-container">
+                            <label class="toggle-item">
+                                <input type="checkbox" id="triple-glazing" data-measure="Triple Glazing">
+                                <span class="toggle-label">Triple Glazing: Triple-glazed windows</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="roof-insulation" data-measure="Roof Insulation">
+                                <span class="toggle-label">Roof Insulation: 200mm roof insulation</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="iwi" data-measure="IWI">
+                                <span class="toggle-label">IWI: 80mm internal insulation</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="floor-insulation" data-measure="Floor Insulation">
+                                <span class="toggle-label">Floor Insulation: 200mm floor EPS</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="mvhr" data-measure="MVHR">
+                                <span class="toggle-label">MVHR: Decentralized ventilation unit</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Strategy Performance</h3>
+                        <div id="strategy-data" class="strategy-data">
+                            <table>
+                                <tr>
+                                    <td class="label">Annual Energy Consumption (kWh)</td>
+                                    <td class="value">523,894.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Total Annual Energy Saving (kWh)</td>
+                                    <td class="value">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Energy Saving (%)</td>
+                                    <td class="value">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">ECM Cost (£)</td>
+                                    <td class="value">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Total Annual Energy Cost Saving (£)</td>
+                                    <td class="value">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Payback (Years)</td>
+                                    <td class="value">-</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>TOP 5</h3>
+                        <div class="top5-charts">
+                            <div class="chart-block">
+                                <div class="chart-title">Energy Saving Top 5</div>
+                                <canvas id="chart-energy-saving"></canvas>
+                            </div>
+                            <div class="chart-block">
+                                <div class="chart-title">ECM Cost Lowest 5</div>
+                                <canvas id="chart-ecm-cost"></canvas>
+                            </div>
+                            <div class="chart-block">
+                                <div class="chart-title">Payback Shortest 5</div>
+                                <canvas id="chart-payback"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Compare Mode Cards -->
+                <div class="feature-cards-compare" style="display: none;">
+                    <div class="feature-card">
+                        <h3>Strategy 1 Selection</h3>
+                        <div class="toggle-container" id="compare-toggle1">
+                            <label class="toggle-item"><input type="checkbox" data-measure="Triple Glazing"> <span class="toggle-label">Triple Glazing: Triple-glazed windows</span></label>
+                            <label class="toggle-item"><input type="checkbox" data-measure="Roof Insulation"> <span class="toggle-label">Roof Insulation: 200mm roof insulation</span></label>
+                            <label class="toggle-item"><input type="checkbox" data-measure="IWI"> <span class="toggle-label">IWI: 80mm internal insulation</span></label>
+                            <label class="toggle-item"><input type="checkbox" data-measure="Floor Insulation"> <span class="toggle-label">Floor Insulation: 200mm floor EPS</span></label>
+                            <label class="toggle-item"><input type="checkbox" data-measure="MVHR"> <span class="toggle-label">MVHR: Decentralized ventilation unit</span></label>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Strategy 2 Selection</h3>
+                        <div class="toggle-container" id="compare-toggle2">
+                            <label class="toggle-item"><input type="checkbox" data-measure="Triple Glazing"> <span class="toggle-label">Triple Glazing: Triple-glazed windows</span></label>
+                            <label class="toggle-item"><input type="checkbox" data-measure="Roof Insulation"> <span class="toggle-label">Roof Insulation: 200mm roof insulation</span></label>
+                            <label class="toggle-item"><input type="checkbox" data-measure="IWI"> <span class="toggle-label">IWI: 80mm internal insulation</span></label>
+                            <label class="toggle-item"><input type="checkbox" data-measure="Floor Insulation"> <span class="toggle-label">Floor Insulation: 200mm floor EPS</span></label>
+                            <label class="toggle-item"><input type="checkbox" data-measure="MVHR"> <span class="toggle-label">MVHR: Decentralized ventilation unit</span></label>
+                        </div>
+                    </div>
+                    <div class="feature-card compare-charts-card">
+                        <h3>Comparison Results</h3>
+                        <div class="compare-charts-grid">
+                            <div class="compare-chart-block"><div class="chart-title">Annual Energy Consumption (kWh)</div><canvas id="compare-chart-energy"></canvas></div>
+                            <div class="compare-chart-block"><div class="chart-title">Energy Saving (%)</div><canvas id="compare-chart-saving"></canvas></div>
+                            <div class="compare-chart-block"><div class="chart-title">ECM Cost (£)</div><canvas id="compare-chart-cost"></canvas></div>
+                            <div class="compare-chart-block"><div class="chart-title">Payback (Years)</div><canvas id="compare-chart-payback"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>© 2025 Retrofit Design. Buro Happold Retrofitting Team 1.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
